@@ -21,6 +21,7 @@ public class ContaModel {
     private int contaNumero;
     private int contaAgencia;
     private Boolean status;
+    @Embedded
     private SaldoModel saldo;
 
 }
