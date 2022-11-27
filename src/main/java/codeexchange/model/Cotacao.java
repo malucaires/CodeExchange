@@ -9,13 +9,13 @@ public enum Cotacao {
     EUROREAL(5.63),
     EURODOLAR(1.04);
 
-    private double descricao;
-    Cotacao (double descricao) {
-        this.descricao=descricao;
+    private double valor;
+    Cotacao (double valor) {
+        this.valor=valor;
     }
 
-    public double getDescricao(){
-        return descricao;
+    public double getValor(){
+        return valor;
     }
 
 }

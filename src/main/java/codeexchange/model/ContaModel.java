@@ -24,4 +24,15 @@ public class ContaModel {
     @Embedded
     private SaldoModel saldo;
 
+    @Override
+    public String toString() {
+        return "ContaModel{" +
+                "ID_Conta=" + idConta +
+                ", ID_Cliente=" + idCliente +
+                ", Conta=" + contaNumero +
+                ", Agencia=" + contaAgencia +
+                ", Status=" + status +
+                ", Saldo=" + saldo +
+                '}';
+    }
 }

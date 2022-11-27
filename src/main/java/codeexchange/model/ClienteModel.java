@@ -23,4 +23,14 @@ public class ClienteModel {
     private LocalDate dataNascimento;
     private String telefone;
 
+    @Override
+    public String toString() {
+        return "ClienteModel{" +
+                "ID_Cliente=" + idCliente +
+                ", Nome='" + nomeCliente + '\'' +
+                ", CPF='" + cpfCliente + '\'' +
+                ", Data de Nascimento=" + dataNascimento +
+                ", Telefone='" + telefone + '\'' +
+                '}';
+    }
 }
