@@ -16,4 +16,13 @@ public class SaldoModel {
     private double saldoReal;
     private double saldoDolar;
     private double saldoEuro;
+
+    @Override
+    public String toString() {
+        return "SaldoModel{" +
+                "saldoReal=" + saldoReal +
+                ", saldoDolar=" + saldoDolar +
+                ", saldoEuro=" + saldoEuro +
+                '}';
+    }
 }

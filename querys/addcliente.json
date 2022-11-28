@@ -1,0 +1,31 @@
+{
+  "idConta": 89,
+  "idCliente": 99,
+  "contaNumero": 4875,
+  "contaAgencia": 1430,
+  "status": true,
+  "saldo": {
+    "saldoReal": 0.0,
+    "saldoDolar": 1000.0,
+    "saldoEuro": 0.0
+  }
+}
+
+{
+  "idCliente": 101,
+  "nomeCliente": "Aline Silva",
+  "cpfCliente": "22455632514",
+  "dataNascimento": "1991-12-23",
+  "telefone": "031995441412"
+}
+
+{
+  "idTransacao": 122,
+  "idConta": 112,
+  "cotacao": 0.18,
+  "moedaOrigem": "REAL",
+  "valorOrigem": 180.0,
+  "moedaDestino": "DOLAR",
+  "valorDestino": 100.0
+}
+

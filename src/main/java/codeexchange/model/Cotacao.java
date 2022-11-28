@@ -2,6 +2,7 @@ package codeexchange.model;
 
 public enum Cotacao {
 
+    /*
     REALDOLAR(0.18),
     REALEURO(0.18),
     DOLARREAL(5.41),
@@ -17,5 +18,7 @@ public enum Cotacao {
     public double getValor(){
         return valor;
     }
+
+     */
 
 }

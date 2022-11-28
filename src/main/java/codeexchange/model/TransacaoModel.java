@@ -16,9 +16,11 @@ public class TransacaoModel {
 
     @Id
     private Long idTransacao;
+    private Long idContaTransacao;
     private double cotacao;
     private String moedaOrigem;
     private double valorOrigem;
     private String moedaDestino;
     private double valorDestino;
+
 }

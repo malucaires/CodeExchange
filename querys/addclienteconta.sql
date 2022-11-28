@@ -11,7 +11,7 @@ VALUES
 (109, 'Luana Macedo','10125212552', '1992-04-27', '031993552141'),
 (110, 'Mirian Borges','14214225441', '1974-05-17', '041996552554');
 
-INSERT INTO conta_model (id_conta, conta_agencia, conta_numero, id_cliente, saldo_dolar, saldo_real, saldo_euro, status)
+INSERT INTO conta_model (id_conta, conta_agencia, conta_numero, id_cliente, saldo_real, saldo_dolar, saldo_euro, status)
 VALUES
 (111, 1430, 4750, 101, 1000, 0, 0, true),
 (112, 1430, 4751, 102, 850, 0, 0, true),
@@ -23,4 +23,8 @@ VALUES
 (118, 1430, 4757, 108, 0, 0, 850, true),
 (119, 1430, 4758, 109, 0, 0, 1200, true),
 (120, 1430, 4759, 110, 500, 500, 500, true);
+
+INSERT INTO transacao_model (id_transacao, cotacao, id_conta_transacao, moeda_destino, moeda_origem, valor_destino, valor_origem)
+VALUES
+(121, 0.18, 111, 'DOLAR', 'REAL', 100, 180);
 
