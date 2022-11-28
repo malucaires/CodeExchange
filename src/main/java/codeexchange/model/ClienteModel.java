@@ -2,6 +2,7 @@ package codeexchange.model;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 @Entity
 public class ClienteModel {
 
-    @Id
+    @Id @GeneratedValue
     private Long idCliente;
     private String nomeCliente;
     private String cpfCliente;

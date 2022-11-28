@@ -22,6 +22,11 @@ public class TransacaoService {
     public TransacaoModel create (@NotNull TransacaoModel transacao){
         ContaModel conta = contaRepository.findById(transacao.getIdContaTransacao()).get();
 
+        if (conta.getStatus() == false){
+            System.out.println("Conta inativa. Operação não realizada");
+            return null;
+        }
+
         double cotacao = 0.0;
 
         if (transacao.getMoedaOrigem().equals("REAL")){

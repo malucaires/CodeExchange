@@ -2,6 +2,7 @@ package codeexchange.model;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Entity
 public class ContaModel {
 
-    @Id
+    @Id @GeneratedValue
     private Long idConta;
     private Long idCliente;
     private int contaNumero;
@@ -23,6 +24,7 @@ public class ContaModel {
     private Boolean status;
     @Embedded
     private SaldoModel saldo;
+
 
     @Override
     public String toString() {

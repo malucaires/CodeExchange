@@ -29,6 +29,11 @@ public class ContaController {
         return ResponseEntity.ok(contaService.update(conta));
     }
 
+    @PatchMapping
+    public ResponseEntity<ContaModel> replace (@RequestBody ContaModel conta){
+        return ResponseEntity.ok(contaService.replace(conta));
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         contaService.delete(id);

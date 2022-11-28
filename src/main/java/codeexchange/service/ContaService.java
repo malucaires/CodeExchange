@@ -27,4 +27,10 @@ public class ContaService {
     public List<ContaModel> list(){
         return contaRepository.findAll();
     }
+
+    public ContaModel replace(ContaModel conta) {
+        ContaModel contaorigem = contaRepository.findById(conta.getIdConta()).get();
+        contaorigem.setStatus(conta.getStatus());
+        return contaRepository.save(contaorigem);
+    }
 }
