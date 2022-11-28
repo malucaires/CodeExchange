@@ -21,11 +21,9 @@
 
 {
   "idTransacao": 122,
-  "idConta": 112,
-  "cotacao": 0.18,
-  "moedaOrigem": "REAL",
-  "valorOrigem": 180.0,
-  "moedaDestino": "DOLAR",
-  "valorDestino": 100.0
+  "idContaTransacao": 112,
+  "moedaOrigem": "DOLAR",
+  "moedaDestino": "EURO",
+  "valorOrigem": 5.0
 }
 

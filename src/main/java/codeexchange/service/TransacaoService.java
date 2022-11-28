@@ -1,6 +1,7 @@
 package codeexchange.service;
 
 import codeexchange.model.ContaModel;
+import codeexchange.model.Cotacao;
 import codeexchange.model.TransacaoModel;
 import codeexchange.repository.ContaRepository;
 import codeexchange.repository.TransacaoRepository;
@@ -20,13 +21,51 @@ public class TransacaoService {
 
     public TransacaoModel create (@NotNull TransacaoModel transacao){
         ContaModel conta = contaRepository.findById(transacao.getIdContaTransacao()).get();
+
+        double cotacao = 0.0;
+
+        if (transacao.getMoedaOrigem().equals("REAL")){
+            if (transacao.getMoedaDestino().equals("DOLAR")){
+                cotacao = Cotacao.REALDOLAR.getValor();
+            } else if (transacao.getMoedaDestino().equals("EURO")){
+                cotacao = Cotacao.REALEURO.getValor();
+            } else {
+                System.out.println("Moeda de Destino inválida.");
+                return null;
+            }
+        } else if (transacao.getMoedaOrigem().equals("DOLAR")) {
+            if (transacao.getMoedaDestino().equals("REAL")) {
+                cotacao = Cotacao.DOLARREAL.getValor();
+            } else if (transacao.getMoedaDestino().equals("EURO")) {
+                cotacao = Cotacao.DOLAREURO.getValor();
+            } else {
+                System.out.println("Moeda de Destino inválida.");
+                return null;
+            }
+        } else if (transacao.getMoedaOrigem().equals("EURO")) {
+            if (transacao.getMoedaDestino().equals("REAL")) {
+                cotacao = Cotacao.EUROREAL.getValor();
+            } else if (transacao.getMoedaDestino().equals("DOLAR")) {
+                cotacao = Cotacao.EURODOLAR.getValor();
+            } else {
+                System.out.println("Moeda de Destino inválida.");
+                return null;
+            }
+        } else {
+            System.out.println("Moeda de Origem inválida.");
+            return null;
+        }
+
+        transacao.setCotacao(cotacao);
+
+        double valorDestino = transacao.getValorOrigem() * transacao.getCotacao();
+        transacao.setValorDestino(valorDestino);
+
         String moedaOrigem = transacao.getMoedaOrigem();
         String moedaDestino = transacao.getMoedaDestino();
 
         double novoSaldoOrigem = 0.0;
         double novoSaldoDestino = 0.0;
-
-        System.out.println(conta.getSaldo());
 
         if (moedaOrigem.equals("REAL")){
             novoSaldoOrigem = conta.getSaldo().getSaldoReal() - transacao.getValorOrigem();
@@ -41,6 +80,7 @@ public class TransacaoService {
                     conta.getSaldo().setSaldoDolar(novoSaldoDestino);
                 } else {
                     System.out.println("Moeda de Destino inválida.");
+                    return null;
                 }
             } else {
                 System.out.println("Saldo insuficiente. Operação não realizada.");
@@ -59,6 +99,7 @@ public class TransacaoService {
                     conta.getSaldo().setSaldoDolar(novoSaldoDestino);
                 } else {
                     System.out.println("Moeda de Destino inválida.");
+                    return null;
                 }
             } else {
                 System.out.println("Saldo insuficiente. Operação não realizada.");
@@ -77,6 +118,7 @@ public class TransacaoService {
                     conta.getSaldo().setSaldoEuro(novoSaldoDestino);
                 } else {
                     System.out.println("Moeda de Destino inválida.");
+                    return null;
                 }
             } else {
                 System.out.println("Saldo insuficiente. Operação não realizada.");
