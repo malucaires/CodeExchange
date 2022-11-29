@@ -72,65 +72,69 @@ public class TransacaoService {
         double novoSaldoOrigem = 0.0;
         double novoSaldoDestino = 0.0;
 
-        if (moedaOrigem.equals("REAL")){
-            novoSaldoOrigem = conta.getSaldo().getSaldoReal() - transacao.getValorOrigem();
-            if (novoSaldoOrigem >= 0){
-                if (moedaDestino.equals("EURO")){
-                    novoSaldoDestino = conta.getSaldo().getSaldoEuro() + transacao.getValorDestino();
-                    conta.getSaldo().setSaldoReal(novoSaldoOrigem);
-                    conta.getSaldo().setSaldoEuro(novoSaldoDestino);
-                } else if (moedaDestino.equals("DOLAR")) {
-                    novoSaldoDestino = conta.getSaldo().getSaldoDolar() + transacao.getValorDestino();
-                    conta.getSaldo().setSaldoReal(novoSaldoOrigem);
-                    conta.getSaldo().setSaldoDolar(novoSaldoDestino);
+        switch (moedaOrigem) {
+            case "REAL":
+                novoSaldoOrigem = conta.getSaldo().getSaldoReal() - transacao.getValorOrigem();
+                if (novoSaldoOrigem >= 0){
+                    if (moedaDestino.equals("EURO")){
+                        novoSaldoDestino = conta.getSaldo().getSaldoEuro() + transacao.getValorDestino();
+                        conta.getSaldo().setSaldoReal(novoSaldoOrigem);
+                        conta.getSaldo().setSaldoEuro(novoSaldoDestino);
+                    } else if (moedaDestino.equals("DOLAR")) {
+                        novoSaldoDestino = conta.getSaldo().getSaldoDolar() + transacao.getValorDestino();
+                        conta.getSaldo().setSaldoReal(novoSaldoOrigem);
+                        conta.getSaldo().setSaldoDolar(novoSaldoDestino);
+                    } else {
+                        System.out.println("Moeda de Destino inválida.");
+                        return null;
+                    }
                 } else {
-                    System.out.println("Moeda de Destino inválida.");
+                    System.out.println("Saldo insuficiente. Operação não realizada.");
                     return null;
                 }
-            } else {
-                System.out.println("Saldo insuficiente. Operação não realizada.");
-                return null;
-            }
-        } else if (moedaOrigem.equals("EURO")){
-            novoSaldoOrigem = conta.getSaldo().getSaldoEuro() - transacao.getValorOrigem();
-            if (novoSaldoOrigem >= 0) {
-                if (moedaDestino.equals("REAL")){
-                    novoSaldoDestino = conta.getSaldo().getSaldoReal() + transacao.getValorDestino();
-                    conta.getSaldo().setSaldoEuro(novoSaldoOrigem);
-                    conta.getSaldo().setSaldoReal(novoSaldoDestino);
-                } else if (moedaDestino.equals("DOLAR")) {
-                    novoSaldoDestino = conta.getSaldo().getSaldoDolar() + transacao.getValorDestino();
-                    conta.getSaldo().setSaldoEuro(novoSaldoOrigem);
-                    conta.getSaldo().setSaldoDolar(novoSaldoDestino);
+                break;
+            case "DOLAR":
+                novoSaldoOrigem = conta.getSaldo().getSaldoDolar() - transacao.getValorOrigem();
+                if (novoSaldoOrigem >= 0) {
+                    if (moedaDestino.equals("REAL")){
+                        novoSaldoDestino = conta.getSaldo().getSaldoReal() + transacao.getValorDestino();
+                        conta.getSaldo().setSaldoDolar(novoSaldoOrigem);
+                        conta.getSaldo().setSaldoReal(novoSaldoDestino);
+                    } else if (moedaDestino.equals("EURO")) {
+                        novoSaldoDestino = conta.getSaldo().getSaldoEuro() + transacao.getValorDestino();
+                        conta.getSaldo().setSaldoDolar(novoSaldoOrigem);
+                        conta.getSaldo().setSaldoEuro(novoSaldoDestino);
+                    } else {
+                        System.out.println("Moeda de Destino inválida.");
+                        return null;
+                    }
                 } else {
-                    System.out.println("Moeda de Destino inválida.");
+                    System.out.println("Saldo insuficiente. Operação não realizada.");
                     return null;
                 }
-            } else {
-                System.out.println("Saldo insuficiente. Operação não realizada.");
-                return null;
-            }
-        } else if (moedaOrigem.equals("DOLAR")) {
-            novoSaldoOrigem = conta.getSaldo().getSaldoDolar() - transacao.getValorOrigem();
-            if (novoSaldoOrigem >= 0) {
-                if (moedaDestino.equals("REAL")){
-                    novoSaldoDestino = conta.getSaldo().getSaldoReal() + transacao.getValorDestino();
-                    conta.getSaldo().setSaldoDolar(novoSaldoOrigem);
-                    conta.getSaldo().setSaldoReal(novoSaldoDestino);
-                } else if (moedaDestino.equals("EURO")) {
-                    novoSaldoDestino = conta.getSaldo().getSaldoEuro() + transacao.getValorDestino();
-                    conta.getSaldo().setSaldoDolar(novoSaldoOrigem);
-                    conta.getSaldo().setSaldoEuro(novoSaldoDestino);
+                break;
+            case "EURO":
+                novoSaldoOrigem = conta.getSaldo().getSaldoEuro() - transacao.getValorOrigem();
+                if (novoSaldoOrigem >= 0) {
+                    if (moedaDestino.equals("REAL")){
+                        novoSaldoDestino = conta.getSaldo().getSaldoReal() + transacao.getValorDestino();
+                        conta.getSaldo().setSaldoEuro(novoSaldoOrigem);
+                        conta.getSaldo().setSaldoReal(novoSaldoDestino);
+                    } else if (moedaDestino.equals("DOLAR")) {
+                        novoSaldoDestino = conta.getSaldo().getSaldoDolar() + transacao.getValorDestino();
+                        conta.getSaldo().setSaldoEuro(novoSaldoOrigem);
+                        conta.getSaldo().setSaldoDolar(novoSaldoDestino);
+                    } else {
+                        System.out.println("Moeda de Destino inválida.");
+                        return null;
+                    }
                 } else {
-                    System.out.println("Moeda de Destino inválida.");
+                    System.out.println("Saldo insuficiente. Operação não realizada.");
                     return null;
                 }
-            } else {
-                System.out.println("Saldo insuficiente. Operação não realizada.");
-                return null;
-            }
-        } else {
-            System.out.println("Moeda de Origem inválida.");
+                break;
+            default:
+                System.out.println("Moeda de Origem inválida.");
         }
 
         System.out.println(conta.getSaldo());
